@@ -82,7 +82,7 @@ class WC_Product_Scheduler {
     public function woocommerce_missing_notice() {
         ?>
         <div class="notice notice-error">
-            <p><?php _e('WooCommerce Product Scheduler requiere que WooCommerce esté instalado y activo.', 'wc-product-scheduler'); ?></p>
+            <p><?php esc_html_e('WooCommerce Product Scheduler requiere que WooCommerce esté instalado y activo.', 'wc-product-scheduler'); ?></p>
         </div>
         <?php
     }
@@ -196,7 +196,7 @@ function wc_product_scheduler_activate() {
     // Verificar que WooCommerce esté activo
     if (!class_exists('WooCommerce')) {
         deactivate_plugins(plugin_basename(__FILE__));
-        wp_die(__('Este plugin requiere que WooCommerce esté instalado y activo.', 'wc-product-scheduler'));
+        wp_die(esc_html__('Este plugin requiere que WooCommerce esté instalado y activo.', 'wc-product-scheduler'));
     }
 
     // Crear evento cron de WordPress

@@ -143,7 +143,7 @@ class WC_Product_Scheduler_Cron {
                 wp_die('Cron ejecutado correctamente', 'WC Product Scheduler', array('response' => 200));
             } catch (Exception $e) {
                 @unlink($running_lock);
-                wp_die('Error en ejecución: ' . $e->getMessage(), 'WC Product Scheduler', array('response' => 500));
+                wp_die('Error en ejecución: ' . esc_html($e->getMessage()), 'WC Product Scheduler', array('response' => 500));
             }
         } else {
             wp_die('Clave incorrecta', 'WC Product Scheduler', array('response' => 403));
