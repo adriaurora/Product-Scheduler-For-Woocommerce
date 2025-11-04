@@ -1,0 +1,77 @@
+# WordPress
+.htaccess
+wp-config.php
+wp-content/uploads/
+wp-content/blogs.dir/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/
+wp-content/cache/supercache/
+
+# WP-Cron lock files (generados por el plugin)
+wp-content/wc-scheduler-*.txt
+wp-content/wc-scheduler-*.lock
+
+# IDE y Editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+error_log
+debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# PHP
+vendor/
+composer.lock
+phpunit.xml
+
+# Sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Backups
+*.bak
+*.backup
+*.sql
+*.zip
+*.tar.gz
+
+# Archivos temporales
+*.tmp
+*.temp
+*.swp
+*.swo
+*~.nib
+
+# Archivos de desarrollo (ya eliminados, pero por si acaso)
+cron-runner.php
+diagnostico.php
+test-cron.php
+verificar-cron-wp.php
+registrar-cron.php
+
+# Archivos de configuración local
+.env
+.env.local
