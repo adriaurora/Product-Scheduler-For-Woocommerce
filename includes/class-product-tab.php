@@ -207,7 +207,7 @@ class WC_Product_Scheduler_Tab {
     public function save_product_scheduler_fields($post_id) {
         // Verificar nonce de WooCommerce
         if (!isset($_POST['woocommerce_meta_nonce']) ||
-            !wp_verify_nonce($_POST['woocommerce_meta_nonce'], 'woocommerce_save_data')) {
+            !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['woocommerce_meta_nonce'])), 'woocommerce_save_data')) {
             return;
         }
 
@@ -232,8 +232,8 @@ class WC_Product_Scheduler_Tab {
 
         // Solo procesar despublicación si está activada
         if ($unpublish_enabled === 'yes') {
-            $unpublish_date = isset($_POST['_scheduler_unpublish_date']) ? sanitize_text_field($_POST['_scheduler_unpublish_date']) : '';
-            $unpublish_time = isset($_POST['_scheduler_unpublish_time']) ? sanitize_text_field($_POST['_scheduler_unpublish_time']) : '';
+            $unpublish_date = isset($_POST['_scheduler_unpublish_date']) ? sanitize_text_field(wp_unslash($_POST['_scheduler_unpublish_date'])) : '';
+            $unpublish_time = isset($_POST['_scheduler_unpublish_time']) ? sanitize_text_field(wp_unslash($_POST['_scheduler_unpublish_time'])) : '';
 
             // Convertir DD-MM-YYYY a YYYY-MM-DD para guardar en BD
             if (!empty($unpublish_date)) {
@@ -287,8 +287,8 @@ class WC_Product_Scheduler_Tab {
 
         // Solo procesar republicación si está activada
         if ($republish_enabled === 'yes') {
-            $republish_date = isset($_POST['_scheduler_republish_date']) ? sanitize_text_field($_POST['_scheduler_republish_date']) : '';
-            $republish_time = isset($_POST['_scheduler_republish_time']) ? sanitize_text_field($_POST['_scheduler_republish_time']) : '';
+            $republish_date = isset($_POST['_scheduler_republish_date']) ? sanitize_text_field(wp_unslash($_POST['_scheduler_republish_date'])) : '';
+            $republish_time = isset($_POST['_scheduler_republish_time']) ? sanitize_text_field(wp_unslash($_POST['_scheduler_republish_time'])) : '';
 
             // Convertir DD-MM-YYYY a YYYY-MM-DD para guardar en BD
             if (!empty($republish_date)) {

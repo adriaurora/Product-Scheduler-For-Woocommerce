@@ -122,8 +122,9 @@ class WC_Product_Scheduler_Cron {
         // Obtener cron key (cacheada)
         $secret_key = self::get_cron_key();
 
-        // Verificar clave
-        if ($_GET['key'] === $secret_key) {
+        // Sanitizar y verificar clave (la clave secreta hace las veces de nonce)
+        $provided_key = isset($_GET['key']) ? sanitize_text_field(wp_unslash($_GET['key'])) : '';
+        if ($provided_key === $secret_key) {
             // Prevenir ejecuciones múltiples usando archivo
             $running_lock = WP_CONTENT_DIR . '/wc-scheduler-running.lock';
 
