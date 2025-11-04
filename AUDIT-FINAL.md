@@ -3,7 +3,6 @@
 **Fecha:** 2025-11-01
 **Plugin:** WooCommerce Product Scheduler
 **Versión:** 1.4.0
-**Auditor:** Claude Code
 
 ---
 
@@ -542,6 +541,7 @@ El plugin **WooCommerce Product Scheduler v1.4.0** está **LISTO PARA PRODUCCIÓ
 - ✅ Distribución a clientes
 - ✅ Publicación en repositorio de WordPress (con ajustes menores si es necesario)
 
-**Auditoría realizada por:** Claude Code
-**Fecha:** 2025-11-01
+---
+
+**Fecha de auditoría:** 2025-11-01
 **Versión auditada:** 1.4.0
