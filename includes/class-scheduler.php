@@ -85,7 +85,7 @@ class WC_Product_Scheduler_Cron {
                 return; // Otra instancia está ejecutándose
             }
             // Lock muy antiguo, eliminarlo
-            @unlink($running_lock);
+            @wp_delete_file($running_lock);
         }
 
         // Crear lock
@@ -99,12 +99,12 @@ class WC_Product_Scheduler_Cron {
             @file_put_contents($lock_file, time());
 
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('[WC Scheduler] ✅ Fallback check ejecutado a las ' . date('Y-m-d H:i:s'));
+                error_log('[WC Scheduler] ✅ Fallback check ejecutado a las ' . gmdate('Y-m-d H:i:s'));
             }
         } catch (Exception $e) {
             error_log('[WC Scheduler] ERROR en fallback check: ' . $e->getMessage());
         } finally {
-            @unlink($running_lock);
+            @wp_delete_file($running_lock);
         }
     }
 
@@ -139,10 +139,10 @@ class WC_Product_Scheduler_Cron {
 
             try {
                 $this->check_scheduled_products();
-                @unlink($running_lock);
+                @wp_delete_file($running_lock);
                 wp_die('Cron ejecutado correctamente', 'WC Product Scheduler', array('response' => 200));
             } catch (Exception $e) {
-                @unlink($running_lock);
+                @wp_delete_file($running_lock);
                 wp_die('Error en ejecución: ' . esc_html($e->getMessage()), 'WC Product Scheduler', array('response' => 500));
             }
         } else {
@@ -176,7 +176,7 @@ class WC_Product_Scheduler_Cron {
         if (defined('WP_DEBUG') && WP_DEBUG) {
             error_log(sprintf('[WC Scheduler] Buscando productos para despublicar. Timestamp actual: %d (%s)',
                 $current_timestamp,
-                date('Y-m-d H:i:s', $current_timestamp)
+                gmdate('Y-m-d H:i:s', $current_timestamp)
             ));
         }
 
