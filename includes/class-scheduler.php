@@ -99,9 +99,11 @@ class WC_Product_Scheduler_Cron {
             @file_put_contents($lock_file, time());
 
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log('[WC Scheduler] ✅ Fallback check ejecutado a las ' . gmdate('Y-m-d H:i:s'));
             }
         } catch (Exception $e) {
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
             error_log('[WC Scheduler] ERROR en fallback check: ' . $e->getMessage());
         } finally {
             @wp_delete_file($running_lock);
@@ -115,6 +117,7 @@ class WC_Product_Scheduler_Cron {
     public function maybe_check_via_request() {
         // IMPORTANTE: Solo ejecutar si se pasan los parámetros específicos
         // NO ejecutar en cada petición normal
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!isset($_GET['wc_scheduler_cron']) || !isset($_GET['key'])) {
             return; // Salir inmediatamente si no es una petición de cron
         }
@@ -123,6 +126,7 @@ class WC_Product_Scheduler_Cron {
         $secret_key = self::get_cron_key();
 
         // Sanitizar y verificar clave (la clave secreta hace las veces de nonce)
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $provided_key = isset($_GET['key']) ? sanitize_text_field(wp_unslash($_GET['key'])) : '';
         if ($provided_key === $secret_key) {
             // Prevenir ejecuciones múltiples usando archivo
@@ -175,6 +179,7 @@ class WC_Product_Scheduler_Cron {
 
         // Log: inicio del proceso (solo si WP_DEBUG)
         if (defined('WP_DEBUG') && WP_DEBUG) {
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
             error_log(sprintf('[WC Scheduler] Buscando productos para despublicar. Timestamp actual: %d (%s)',
                 $current_timestamp,
                 gmdate('Y-m-d H:i:s', $current_timestamp)
@@ -183,6 +188,7 @@ class WC_Product_Scheduler_Cron {
 
         // Buscar productos con fecha de despublicación vencida Y toggle activado
         // OPTIMIZADO: Empezar por postmeta (tabla más pequeña) y usar CAST para comparación numérica
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $products = $wpdb->get_results($wpdb->prepare("
             SELECT p.ID, pm_timestamp.meta_value as unpublish_timestamp
             FROM {$wpdb->postmeta} pm_timestamp
@@ -197,8 +203,10 @@ class WC_Product_Scheduler_Cron {
         // Log: resultados de la consulta (solo si WP_DEBUG)
         if (defined('WP_DEBUG') && WP_DEBUG) {
             if (empty($products)) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log('[WC Scheduler] No se encontraron productos para despublicar');
             } else {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log(sprintf('[WC Scheduler] Encontrados %d productos para despublicar', count($products)));
             }
         }
@@ -209,6 +217,7 @@ class WC_Product_Scheduler_Cron {
 
         foreach ($products as $product_data) {
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log(sprintf('[WC Scheduler] Procesando producto ID: %d, timestamp: %d',
                     $product_data->ID,
                     $product_data->unpublish_timestamp
@@ -216,6 +225,7 @@ class WC_Product_Scheduler_Cron {
             }
             $result = $this->unpublish_product($product_data->ID);
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log(sprintf('[WC Scheduler] Resultado despublicación producto #%d: %s',
                     $product_data->ID,
                     $result ? 'ÉXITO' : 'FALLO'
@@ -234,6 +244,7 @@ class WC_Product_Scheduler_Cron {
         // Buscar productos con fecha de publicación vencida Y toggle activado
         // OPTIMIZADO: Empezar por postmeta y usar CAST para comparación numérica
         // IMPORTANTE: Busca productos en cualquier estado excepto 'publish' (ya publicados)
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $products = $wpdb->get_results($wpdb->prepare("
             SELECT p.ID, pm_timestamp.meta_value as republish_timestamp
             FROM {$wpdb->postmeta} pm_timestamp
@@ -313,6 +324,7 @@ class WC_Product_Scheduler_Cron {
         } catch (Exception $e) {
             delete_transient($processing_key);
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log('[WC Product Scheduler] Error despublicando producto #' . $product_id . ': ' . $e->getMessage());
             }
             return false;
@@ -333,6 +345,7 @@ class WC_Product_Scheduler_Cron {
         // Si ya está publicado, no hacer nada (evitar procesamiento innecesario)
         if ($product->get_status() === 'publish') {
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log('[WC Scheduler] Producto #' . $product_id . ' ya está publicado, omitiendo');
             }
             // Limpiar la programación aunque ya esté publicado
@@ -392,6 +405,7 @@ class WC_Product_Scheduler_Cron {
         } catch (Exception $e) {
             delete_transient($processing_key);
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log('[WC Product Scheduler] Error republicando producto #' . $product_id . ': ' . $e->getMessage());
             }
             return false;
@@ -414,6 +428,7 @@ class WC_Product_Scheduler_Cron {
 
         // Log en archivo (siempre, no solo en WP_DEBUG)
         // Esto permite tener registro de acciones importantes sin ralentizar la DB
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
         error_log(sprintf(
             '[WC Product Scheduler] %s: Product #%d "%s" at %s',
             ucfirst($action),

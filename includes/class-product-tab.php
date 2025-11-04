@@ -412,6 +412,7 @@ class WC_Product_Scheduler_Tab {
         } catch (Exception $e) {
             // En caso de error, considerar inválida
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log('[WC Product Scheduler] Error validando fecha futura: ' . $e->getMessage());
             }
             return false;
@@ -442,6 +443,7 @@ class WC_Product_Scheduler_Tab {
         } catch (Exception $e) {
             // Log error si WP_DEBUG está activo
             if (defined('WP_DEBUG') && WP_DEBUG) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                 error_log('[WC Product Scheduler] Error creando timestamp: ' . $e->getMessage());
             }
             return false;
