@@ -61,7 +61,7 @@ Para reportar bugs o solicitar nuevas funcionalidades, contacta con Disma Consul
 
 == Installation ==
 
-1. Sube la carpeta `wc-product-scheduler` al directorio `/wp-content/plugins/`
+1. Sube la carpeta `product-scheduler-for-woocommerce` al directorio `/wp-content/plugins/`
 2. Activa el plugin desde el menú 'Plugins' en WordPress
 3. Asegúrate de que WooCommerce está instalado y activo
 4. Ve a cualquier producto y encontrarás la nueva pestaña "Programación"
@@ -211,8 +211,8 @@ El plugin usa los siguientes meta keys en productos:
 = Estructura de Archivos =
 
 ```
-wc-product-scheduler/
-├── wc-product-scheduler.php          (Main plugin file)
+product-scheduler-for-woocommerce/
+├── product-scheduler-for-woocommerce.php          (Main plugin file)
 ├── readme.txt                         (WordPress plugin readme)
 ├── includes/
 │   ├── class-product-tab.php         (Admin UI and meta box)

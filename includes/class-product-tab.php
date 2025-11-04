@@ -71,7 +71,7 @@ class WC_Product_Scheduler_Tab {
      */
     public function add_product_data_tab($tabs) {
         $tabs['scheduler'] = array(
-            'label'    => __('Programación', 'wc-product-scheduler'),
+            'label'    => __('Programación', 'product-scheduler-for-woocommerce'),
             'target'   => 'scheduler_product_data',
             'class'    => array('show_if_simple', 'show_if_variable', 'scheduler_options', 'scheduler_tab'),
             'priority' => 80,
@@ -110,9 +110,9 @@ class WC_Product_Scheduler_Tab {
             <!-- ZONA HORARIA - MEJORADA -->
             <div class="options_group">
                 <div class="scheduler-info">
-                    <span class="timezone-label"><?php esc_html_e('Zona horaria:', 'wc-product-scheduler'); ?></span>
+                    <span class="timezone-label"><?php esc_html_e('Zona horaria:', 'product-scheduler-for-woocommerce'); ?></span>
                     <span class="timezone-value"><?php echo esc_html(wp_timezone_string()); ?></span>
-                    <span class="timezone-note"><?php esc_html_e('Las fechas y horas se procesarán según la zona horaria configurada en WordPress.', 'wc-product-scheduler'); ?></span>
+                    <span class="timezone-note"><?php esc_html_e('Las fechas y horas se procesarán según la zona horaria configurada en WordPress.', 'product-scheduler-for-woocommerce'); ?></span>
                 </div>
             </div>
 
@@ -120,7 +120,7 @@ class WC_Product_Scheduler_Tab {
             <div class="options_group scheduler-section" id="unpublish-section">
                 <!-- Header con toggle a la derecha -->
                 <div class="scheduler-section-header">
-                    <h3><?php esc_html_e('Despublicar producto', 'wc-product-scheduler'); ?></h3>
+                    <h3><?php esc_html_e('Despublicar producto', 'product-scheduler-for-woocommerce'); ?></h3>
                     <label class="scheduler-toggle-wrapper">
                         <input type="checkbox"
                                name="_scheduler_unpublish_enabled"
@@ -135,7 +135,7 @@ class WC_Product_Scheduler_Tab {
                 <!-- Campos (se muestran cuando el toggle está activo) -->
                 <div class="scheduler-fields-wrapper" id="unpublish-fields" <?php echo ($unpublish_enabled !== 'yes') ? 'style="display:none;"' : ''; ?>>
                     <p class="form-field">
-                        <label for="_scheduler_unpublish_date"><?php esc_html_e('Fecha de despublicación', 'wc-product-scheduler'); ?></label>
+                        <label for="_scheduler_unpublish_date"><?php esc_html_e('Fecha de despublicación', 'product-scheduler-for-woocommerce'); ?></label>
                         <input type="text"
                                class="short scheduler-datepicker"
                                name="_scheduler_unpublish_date"
@@ -146,13 +146,13 @@ class WC_Product_Scheduler_Tab {
                     </p>
 
                     <p class="form-field">
-                        <label for="_scheduler_unpublish_time"><?php esc_html_e('Hora de despublicación', 'wc-product-scheduler'); ?></label>
+                        <label for="_scheduler_unpublish_time"><?php esc_html_e('Hora de despublicación', 'product-scheduler-for-woocommerce'); ?></label>
                         <input type="time"
                                class="short"
                                name="_scheduler_unpublish_time"
                                id="_scheduler_unpublish_time"
                                value="<?php echo esc_attr($unpublish_time); ?>">
-                        <span class="description"><?php esc_html_e('Formato: HH:MM (24 horas)', 'wc-product-scheduler'); ?></span>
+                        <span class="description"><?php esc_html_e('Formato: HH:MM (24 horas)', 'product-scheduler-for-woocommerce'); ?></span>
                     </p>
                 </div>
             </div>
@@ -161,7 +161,7 @@ class WC_Product_Scheduler_Tab {
             <div class="options_group scheduler-section" id="republish-section">
                 <!-- Header con toggle a la derecha -->
                 <div class="scheduler-section-header">
-                    <h3><?php esc_html_e('Publicar producto', 'wc-product-scheduler'); ?></h3>
+                    <h3><?php esc_html_e('Publicar producto', 'product-scheduler-for-woocommerce'); ?></h3>
                     <label class="scheduler-toggle-wrapper">
                         <input type="checkbox"
                                name="_scheduler_republish_enabled"
@@ -176,7 +176,7 @@ class WC_Product_Scheduler_Tab {
                 <!-- Campos (se muestran cuando el toggle está activo) -->
                 <div class="scheduler-fields-wrapper" id="republish-fields" <?php echo ($republish_enabled !== 'yes') ? 'style="display:none;"' : ''; ?>>
                     <p class="form-field">
-                        <label for="_scheduler_republish_date"><?php esc_html_e('Fecha de publicación', 'wc-product-scheduler'); ?></label>
+                        <label for="_scheduler_republish_date"><?php esc_html_e('Fecha de publicación', 'product-scheduler-for-woocommerce'); ?></label>
                         <input type="text"
                                class="short scheduler-datepicker"
                                name="_scheduler_republish_date"
@@ -187,13 +187,13 @@ class WC_Product_Scheduler_Tab {
                     </p>
 
                     <p class="form-field">
-                        <label for="_scheduler_republish_time"><?php esc_html_e('Hora de publicación', 'wc-product-scheduler'); ?></label>
+                        <label for="_scheduler_republish_time"><?php esc_html_e('Hora de publicación', 'product-scheduler-for-woocommerce'); ?></label>
                         <input type="time"
                                class="short"
                                name="_scheduler_republish_time"
                                id="_scheduler_republish_time"
                                value="<?php echo esc_attr($republish_time); ?>">
-                        <span class="description"><?php esc_html_e('Formato: HH:MM (24 horas)', 'wc-product-scheduler'); ?></span>
+                        <span class="description"><?php esc_html_e('Formato: HH:MM (24 horas)', 'product-scheduler-for-woocommerce'); ?></span>
                     </p>
                 </div>
             </div>
@@ -254,7 +254,7 @@ class WC_Product_Scheduler_Tab {
                 add_settings_error(
                     'wc_product_scheduler',
                     'past_unpublish_date',
-                    __('La fecha de despublicación no puede estar en el pasado. Se ha eliminado la programación.', 'wc-product-scheduler'),
+                    __('La fecha de despublicación no puede estar en el pasado. Se ha eliminado la programación.', 'product-scheduler-for-woocommerce'),
                     'error'
                 );
             }
@@ -309,7 +309,7 @@ class WC_Product_Scheduler_Tab {
                 add_settings_error(
                     'wc_product_scheduler',
                     'past_republish_date',
-                    __('La fecha de republicación no puede estar en el pasado. Se ha eliminado la programación.', 'wc-product-scheduler'),
+                    __('La fecha de republicación no puede estar en el pasado. Se ha eliminado la programación.', 'product-scheduler-for-woocommerce'),
                     'error'
                 );
             }
@@ -496,7 +496,7 @@ class WC_Product_Scheduler_Tab {
 
             // Añadir después de la columna de precio
             if ($key === 'price') {
-                $new_columns['scheduler'] = __('Programación', 'wc-product-scheduler');
+                $new_columns['scheduler'] = __('Programación', 'product-scheduler-for-woocommerce');
             }
         }
 
@@ -516,12 +516,12 @@ class WC_Product_Scheduler_Tab {
             $output = array();
 
             if (!empty($unpublish_date)) {
-                $output[] = '<strong>' . __('Despublicar:', 'wc-product-scheduler') . '</strong><br>'
+                $output[] = '<strong>' . __('Despublicar:', 'product-scheduler-for-woocommerce') . '</strong><br>'
                           . esc_html($unpublish_date) . ' ' . esc_html($unpublish_time);
             }
 
             if (!empty($republish_date)) {
-                $output[] = '<strong>' . __('Publicar:', 'wc-product-scheduler') . '</strong><br>'
+                $output[] = '<strong>' . __('Publicar:', 'product-scheduler-for-woocommerce') . '</strong><br>'
                           . esc_html($republish_date) . ' ' . esc_html($republish_time);
             }
 

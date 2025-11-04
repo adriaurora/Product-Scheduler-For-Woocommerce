@@ -56,7 +56,7 @@ class WC_Product_Scheduler_Notifications {
         // Asunto del email
         $subject = sprintf(
             /* translators: %s: Site name */
-            __('[%s] Producto despublicado automáticamente', 'wc-product-scheduler'),
+            __('[%s] Producto despublicado automáticamente', 'product-scheduler-for-woocommerce'),
             get_bloginfo('name')
         );
 
@@ -97,7 +97,7 @@ class WC_Product_Scheduler_Notifications {
         // Asunto del email
         $subject = sprintf(
             /* translators: %s: Site name */
-            __('[%s] Producto publicado automáticamente', 'wc-product-scheduler'),
+            __('[%s] Producto publicado automáticamente', 'product-scheduler-for-woocommerce'),
             get_bloginfo('name')
         );
 
@@ -148,9 +148,9 @@ class WC_Product_Scheduler_Notifications {
                                     <h1 style="margin: 0; color: #ffffff; font-size: 24px;">
                                         <?php
                                         if ($type === 'unpublish') {
-                                            esc_html_e('Producto Despublicado', 'wc-product-scheduler');
+                                            esc_html_e('Producto Despublicado', 'product-scheduler-for-woocommerce');
                                         } else {
-                                            esc_html_e('Producto Publicado', 'wc-product-scheduler');
+                                            esc_html_e('Producto Publicado', 'product-scheduler-for-woocommerce');
                                         }
                                         ?>
                                     </h1>
@@ -163,9 +163,9 @@ class WC_Product_Scheduler_Notifications {
                                     <p style="margin: 0 0 20px 0; color: #333333; font-size: 16px; line-height: 1.5;">
                                         <?php
                                         if ($type === 'unpublish') {
-                                            esc_html_e('Se ha despublicado automáticamente el siguiente producto según la programación establecida:', 'wc-product-scheduler');
+                                            esc_html_e('Se ha despublicado automáticamente el siguiente producto según la programación establecida:', 'product-scheduler-for-woocommerce');
                                         } else {
-                                            esc_html_e('Se ha publicado automáticamente el siguiente producto según la programación establecida:', 'wc-product-scheduler');
+                                            esc_html_e('Se ha publicado automáticamente el siguiente producto según la programación establecida:', 'product-scheduler-for-woocommerce');
                                         }
                                         ?>
                                     </p>
@@ -175,19 +175,19 @@ class WC_Product_Scheduler_Notifications {
                                         <tr>
                                             <td style="padding: 20px;">
                                                 <p style="margin: 0 0 10px 0; color: #666666; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">
-                                                    <strong><?php esc_html_e('Producto', 'wc-product-scheduler'); ?></strong>
+                                                    <strong><?php esc_html_e('Producto', 'product-scheduler-for-woocommerce'); ?></strong>
                                                 </p>
                                                 <p style="margin: 0 0 15px 0; color: #333333; font-size: 18px; font-weight: bold;">
                                                     <?php echo esc_html($data['product_name']); ?>
                                                 </p>
                                                 <p style="margin: 0 0 5px 0; color: #666666; font-size: 14px;">
-                                                    <strong><?php esc_html_e('ID:', 'wc-product-scheduler'); ?></strong> #<?php echo esc_html($data['product_id']); ?>
+                                                    <strong><?php esc_html_e('ID:', 'product-scheduler-for-woocommerce'); ?></strong> #<?php echo esc_html($data['product_id']); ?>
                                                 </p>
                                                 <p style="margin: 0 0 5px 0; color: #666666; font-size: 14px;">
-                                                    <strong><?php esc_html_e('Fecha y hora:', 'wc-product-scheduler'); ?></strong> <?php echo esc_html($data['current_time']); ?>
+                                                    <strong><?php esc_html_e('Fecha y hora:', 'product-scheduler-for-woocommerce'); ?></strong> <?php echo esc_html($data['current_time']); ?>
                                                 </p>
                                                 <p style="margin: 0; color: #666666; font-size: 14px;">
-                                                    <strong><?php esc_html_e('Zona horaria:', 'wc-product-scheduler'); ?></strong> <?php echo esc_html($data['timezone']); ?>
+                                                    <strong><?php esc_html_e('Zona horaria:', 'product-scheduler-for-woocommerce'); ?></strong> <?php echo esc_html($data['timezone']); ?>
                                                 </p>
                                             </td>
                                         </tr>
@@ -198,7 +198,7 @@ class WC_Product_Scheduler_Notifications {
                                         <tr>
                                             <td align="center">
                                                 <a href="<?php echo esc_url($data['product_url']); ?>" style="display: inline-block; padding: 12px 30px; background-color: #2271b1; color: #ffffff; text-decoration: none; border-radius: 4px; font-size: 16px; font-weight: bold;">
-                                                    <?php esc_html_e('Editar Producto', 'wc-product-scheduler'); ?>
+                                                    <?php esc_html_e('Editar Producto', 'product-scheduler-for-woocommerce'); ?>
                                                 </a>
                                             </td>
                                         </tr>
@@ -206,13 +206,13 @@ class WC_Product_Scheduler_Notifications {
 
                                     <?php if ($type === 'unpublish'): ?>
                                     <p style="margin: 20px 0 0 0; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; color: #856404; font-size: 14px; line-height: 1.5;">
-                                        <strong><?php esc_html_e('Nota:', 'wc-product-scheduler'); ?></strong>
-                                        <?php esc_html_e('El producto ha cambiado a estado "Borrador" y ya no es visible para los clientes en tu tienda.', 'wc-product-scheduler'); ?>
+                                        <strong><?php esc_html_e('Nota:', 'product-scheduler-for-woocommerce'); ?></strong>
+                                        <?php esc_html_e('El producto ha cambiado a estado "Borrador" y ya no es visible para los clientes en tu tienda.', 'product-scheduler-for-woocommerce'); ?>
                                     </p>
                                     <?php else: ?>
                                     <p style="margin: 20px 0 0 0; padding: 15px; background-color: #d1ecf1; border-left: 4px solid #00a32a; color: #0c5460; font-size: 14px; line-height: 1.5;">
-                                        <strong><?php esc_html_e('Nota:', 'wc-product-scheduler'); ?></strong>
-                                        <?php esc_html_e('El producto ha sido publicado y ya está visible para los clientes en tu tienda.', 'wc-product-scheduler'); ?>
+                                        <strong><?php esc_html_e('Nota:', 'product-scheduler-for-woocommerce'); ?></strong>
+                                        <?php esc_html_e('El producto ha sido publicado y ya está visible para los clientes en tu tienda.', 'product-scheduler-for-woocommerce'); ?>
                                     </p>
                                     <?php endif; ?>
                                 </td>
@@ -222,7 +222,7 @@ class WC_Product_Scheduler_Notifications {
                             <tr>
                                 <td style="background-color: #f9f9f9; padding: 30px 40px; text-align: center; border-top: 1px solid #e0e0e0;">
                                     <p style="margin: 0 0 10px 0; color: #666666; font-size: 14px;">
-                                        <?php esc_html_e('Esta es una notificación automática de', 'wc-product-scheduler'); ?>
+                                        <?php esc_html_e('Esta es una notificación automática de', 'product-scheduler-for-woocommerce'); ?>
                                         <a href="<?php echo esc_url($site_url); ?>" style="color: #2271b1; text-decoration: none;">
                                             <?php echo esc_html($site_name); ?>
                                         </a>

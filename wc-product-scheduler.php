@@ -7,7 +7,7 @@
  * Author URI: https://dismaconsultores.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: wc-product-scheduler
+ * Text Domain: product-scheduler-for-woocommerce
  * Domain Path: /languages
  * Requires at least: 5.8
  * Requires PHP: 7.4
@@ -82,7 +82,7 @@ class WC_Product_Scheduler {
     public function woocommerce_missing_notice() {
         ?>
         <div class="notice notice-error">
-            <p><?php esc_html_e('WooCommerce Product Scheduler requiere que WooCommerce esté instalado y activo.', 'wc-product-scheduler'); ?></p>
+            <p><?php esc_html_e('WooCommerce Product Scheduler requiere que WooCommerce esté instalado y activo.', 'product-scheduler-for-woocommerce'); ?></p>
         </div>
         <?php
     }
@@ -127,7 +127,7 @@ class WC_Product_Scheduler {
     public function add_cron_interval($schedules) {
         $schedules['every_5_minutes'] = array(
             'interval' => 300, // 5 minutos en segundos
-            'display'  => __('Cada 5 minutos', 'wc-product-scheduler')
+            'display'  => __('Cada 5 minutos', 'product-scheduler-for-woocommerce')
         );
         return $schedules;
     }
@@ -146,7 +146,7 @@ class WC_Product_Scheduler {
             $is_product_page = true;
             // Solo cargar CSS en listado, no JS
             wp_enqueue_style(
-                'wc-product-scheduler-admin',
+                'product-scheduler-for-woocommerce-admin',
                 WC_PRODUCT_SCHEDULER_PLUGIN_URL . 'assets/css/admin.css',
                 array(),
                 WC_PRODUCT_SCHEDULER_VERSION
@@ -172,7 +172,7 @@ class WC_Product_Scheduler {
 
         // Encolar estilos del plugin
         wp_enqueue_style(
-            'wc-product-scheduler-admin',
+            'product-scheduler-for-woocommerce-admin',
             WC_PRODUCT_SCHEDULER_PLUGIN_URL . 'assets/css/admin.css',
             array('wp-jquery-ui-dialog'),
             WC_PRODUCT_SCHEDULER_VERSION
@@ -180,7 +180,7 @@ class WC_Product_Scheduler {
 
         // Encolar JavaScript
         wp_enqueue_script(
-            'wc-product-scheduler-admin',
+            'product-scheduler-for-woocommerce-admin',
             WC_PRODUCT_SCHEDULER_PLUGIN_URL . 'assets/js/admin.js',
             array('jquery', 'jquery-ui-datepicker'),
             WC_PRODUCT_SCHEDULER_VERSION,
@@ -196,7 +196,7 @@ function wc_product_scheduler_activate() {
     // Verificar que WooCommerce esté activo
     if (!class_exists('WooCommerce')) {
         deactivate_plugins(plugin_basename(__FILE__));
-        wp_die(esc_html__('Este plugin requiere que WooCommerce esté instalado y activo.', 'wc-product-scheduler'));
+        wp_die(esc_html__('Este plugin requiere que WooCommerce esté instalado y activo.', 'product-scheduler-for-woocommerce'));
     }
 
     // Crear evento cron de WordPress
