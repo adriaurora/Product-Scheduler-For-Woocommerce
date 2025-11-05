@@ -1,4 +1,4 @@
-# WooCommerce Product Scheduler
+# Product Scheduler for WooCommerce
 
 Plugin para WordPress/WooCommerce que permite programar la publicación y despublicación automática de productos.
 
